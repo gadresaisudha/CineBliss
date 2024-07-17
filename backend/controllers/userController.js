@@ -34,5 +34,128 @@ const createUser = asyncHandler(async(req,res)=>{
     }
 });
 
+const loginUser = asyncHandler(async(req,res)=>{
+    const {email,password} = req.body;
+    
+    //check if all exists are present
+    if (!email || !password) {
+        throw new Error("Please fill all the fields");
+      }
+    
+      //check if user already  exists
+    const userExists = await User.findOne({ email });
+  
+    if (userExists){
 
-export {createUser};
+      const isPasswordValid =  await bcrypt.compare(password,userExists.password);
+
+          if (isPasswordValid) {
+            createToken(res, userExists._id);
+      
+            res.status(201).json({
+              _id: userExists._id,
+              username: userExists.username,
+              email: userExists.email,
+              isAdmin: userExists.isAdmin,
+            });
+            return;
+          }
+    }
+
+});
+
+const logoutUser = asyncHandler(async(req, res) => {
+    res.cookie("jwt", "", {
+      httyOnly: true,
+      expires: new Date(0),
+    });
+    res.status(200).json({ message: "Logged out successfully" });
+});
+
+const getAllUsers = asyncHandler(async(req,res)=>{
+  const users = await User.find({});
+  res.json(users);
+});
+
+const getCurrentUserProfile = asyncHandler(async(req,res)=>{
+  const currentUser = await User.findById(req.user._id);
+  if(currentUser){
+      res.json({
+          _id: currentUser._id,
+          username: currentUser.username,
+          email: currentUser.email
+      })
+  }else{
+      res.status(404);
+      throw new Error("User not found");
+  }
+});
+const updateCurrentUserProfile = asyncHandler(async(req,res)=>{
+  const currentUser = await User.findById(req.user._id);
+  if(currentUser){
+      currentUser.username = req.body.username || currentUser.username;
+      currentUser.email = req.body.email || currentUser.email;
+      if(req.body.password){
+          const encrypt = await bcrypt.genSalt(10)
+          const hashedPassword   = await bcrypt.hash(req.body.password,encrypt);
+          currentUser.password = hashedPassword;
+      }
+      const updatedUser = await currentUser.save();
+      res.json({
+          _id: updatedUser._id,
+          username: updatedUser.username,
+          email: updatedUser.email,
+          isAdmin: updatedUser.isAdmin
+      })
+  }else{
+      res.status(404);
+      throw new Error("User not found");
+  }
+});
+
+const deleteUser = asyncHandler(async(req,res)=>{
+  const currentUser = await User.findById(req.params.id);
+  if(currentUser){
+      if(currentUser.isAdmin){
+          res.status(404);
+          throw new Error("Admin cannot be deleted");
+      }
+
+      await User.deleteOne({_id:currentUser._id})
+      res.json({message: "user removed"})
+  }else{
+      res.status(404);
+      throw new Error("User not found");
+  }
+});
+const getUserById  = asyncHandler(async(req,res)=>{
+  const currentUser = await User.findById(req.params.id).select("-password");
+  if(currentUser){
+      res.json(currentUser)
+  }else{
+      res.status(404);
+      throw new Error("User not found");
+  }
+});
+const updateUserById  = asyncHandler(async(req,res)=>{
+  const currentUser = await User.findById(req.params.id);
+  if(currentUser){
+      currentUser.username = req.body.username || currentUser.username;
+      currentUser.email = req.body.email || currentUser.email;
+      currentUser.isAdmin = Boolean(req.body.isAdmin) ;
+      
+      const updatedUser = await currentUser.save();
+      res.json({
+          _id: updatedUser._id,
+          username: updatedUser.username,
+          email: updatedUser.email,
+          isAdmin: updatedUser.isAdmin
+      });
+  }else{
+      res.status(404);
+      throw new Error("User not found");
+  }
+});
+
+
+export {createUser,loginUser,logoutUser,getCurrentUserProfile,getAllUsers,getUserById,updateCurrentUserProfile,updateUserById,deleteUser};

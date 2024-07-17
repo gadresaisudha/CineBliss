@@ -34,8 +34,53 @@ const getAllMovies = asyncHandler(async(req,res)=>{
   res.json(movies);
 });
 
+const deleteMovie = asyncHandler(async(req,res)=>{
+    const movie = await Movie.findById(req.params.id);
+    if(movie){
+        await Movie.deleteOne({_id:movie._id})
+        res.json({message:"Movie deleted"});
+    }
+    else{
+        res.status(400);
+        throw new Error('Movie not Found');
+    }
+    
+});
+const getMovie = asyncHandler(async(req,res)=>{
+
+    const currentmovie =await Movie.findById(req.params.id);
+    if(currentmovie){
+        res.json(currentmovie);
+    }
+    else{
+        res.status(400);
+        throw new Error('Movie not Found');
+    }
+});
+const updateMovie = asyncHandler(async(req,res)=>{
+
+    const currentmovie = await Movie.findById(req.params.id);
+    if(currentmovie){
+
+        currentmovie.moviename = req.body.moviename || currentmovie.moviename;
+        currentmovie.genre = req.body.genre || currentmovie.genre;
+        currentmovie.language = req.body.language || currentmovie.language;
+        currentmovie.description = req.body.description || currentmovie.description;
+        currentmovie.hero = req.body.hero || currentmovie.hero;
+        currentmovie.heroine = req.body.heroine || currentmovie.heroine;
+        currentmovie.director = req.body.director || currentmovie.director;
+        currentmovie.price = req.body.price || currentmovie.price;
+
+        const updatedMovie = await currentmovie.save();
+        res.json(updatedMovie);
+
+    }
+    else{
+        res.status(400);
+        throw new Error('Movie not Found');
+    }
+});
 
 
 
-
-export {createMovie,getAllMovies};
+export {createMovie,getAllMovies,deleteMovie,getMovie,updateMovie};

@@ -1,15 +1,16 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import './App.css'
 import { Outlet } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import Header from './pages/Header/Header'
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
   return (
     <>
-      <div>
-      <Link to = '/register'>Register</Link>
-      </div>
+      <ToastContainer/>
+      <Header/>
       <Outlet/>
     </>
   )

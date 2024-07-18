@@ -2,16 +2,16 @@ import asyncHandler from "../middleware/asyncHandler.js";
 import Movie from '../models/movieModel.js';
 
 const createMovie = asyncHandler(async(req,res)=>{
-const {moviename,genre,language,description,hero,heroine,director,price} = req.body;
+const {moviename,genre,language,description,hero,heroine,director,price,category} = req.body;
 
-if(!moviename||!genre||!language||!description||!hero||!heroine||!director||!price){
+if(!moviename||!genre||!language||!description||!hero||!heroine||!director||!price||!category){
    throw new Error('please fill all fields')
 }
 const movieExists = await Movie.findOne({moviename});
 if(movieExists){
     res.status(400).send("Movie already exists")
 }
-const newMovie = new Movie({moviename,genre,language,description,hero,heroine,director,price});
+const newMovie = new Movie({moviename,genre,language,description,hero,heroine,director,price,category});
 try{
     await newMovie.save();
     res.status(200).json({
@@ -20,7 +20,8 @@ try{
         hero : newMovie.hero,
         heroine : newMovie.heroine,
         director: newMovie.director,
-        price : newMovie.price
+        price : newMovie.price,
+        category:newMovie.category
     })
 }
 catch(error){
@@ -70,7 +71,7 @@ const updateMovie = asyncHandler(async(req,res)=>{
         currentmovie.heroine = req.body.heroine || currentmovie.heroine;
         currentmovie.director = req.body.director || currentmovie.director;
         currentmovie.price = req.body.price || currentmovie.price;
-
+        currentmovie.category = req.body.category || currentmovie.category;
         const updatedMovie = await currentmovie.save();
         res.json(updatedMovie);
 

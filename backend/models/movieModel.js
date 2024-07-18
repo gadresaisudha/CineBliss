@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import User from './userModel.js';
+const {ObjectId} = mongoose.Schema;
 const reviewSchema = mongoose.Schema({
     name:{
         type:String,
@@ -18,6 +18,9 @@ const reviewSchema = mongoose.Schema({
     }
 },
 {timestamps: true})
+
+
+
 const movieSchema =   mongoose.Schema({
   moviename:{
     type: String,
@@ -63,7 +66,11 @@ const movieSchema =   mongoose.Schema({
      required: true,
      default:0
  },
- 
+ category:{
+    type: ObjectId,
+    ref: 'Category',
+    required: true,
+},
 },
 {timestamps: true});
 

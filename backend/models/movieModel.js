@@ -67,8 +67,8 @@ const movieSchema =   mongoose.Schema({
      default:0
  },
  category:{
-    type: ObjectId,
-    ref: 'Category',
+    type: String,
+    enum : ['Free','Buy','Rent'],
     required: true,
 },
 },

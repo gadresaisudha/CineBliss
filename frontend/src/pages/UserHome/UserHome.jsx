@@ -19,6 +19,10 @@ function UserHome() {
         <div>
           {movie?.description}
         </div>
+
+        <div>
+          {movie?.category}
+        </div>
         </div>
        ))}
       </div>

@@ -41,8 +41,10 @@ function Header() {
             </button>
             {dropdownOpen && (
               <div className='dropdowm-menu'> 
-                <Link to = '/Profile' className='dropdown-item'>Profile</Link>
+                <Link to = '/profile' className='dropdown-item'>Profile</Link>
                 <Link to = '/logout' onClick={logoutHandler} className='dropdowm-item'>Logout</Link>
+                {userInfo.isAdmin &&(
+                  <Link to = '/admin/movies' className='dropdowm-item'>Movies</Link>)}
               </div>
             )}
           </div>)

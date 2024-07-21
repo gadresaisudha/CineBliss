@@ -92,6 +92,7 @@ const getCurrentUserProfile = asyncHandler(async(req,res)=>{
 });
 const updateCurrentUserProfile = asyncHandler(async(req,res)=>{
   const currentUser = await User.findById(req.user._id);
+ 
   if(currentUser){
       currentUser.username = req.body.username || currentUser.username;
       currentUser.email = req.body.email || currentUser.email;
@@ -101,6 +102,7 @@ const updateCurrentUserProfile = asyncHandler(async(req,res)=>{
           currentUser.password = hashedPassword;
       }
       const updatedUser = await currentUser.save();
+      console.log(updatedUser);
       res.json({
           _id: updatedUser._id,
           username: updatedUser.username,

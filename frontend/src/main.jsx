@@ -10,6 +10,9 @@ import store from './redux/store.js';
 import Login from './pages/Login/Login.jsx';
 import Home from './pages/Home/Home.jsx';
 import UserHome from './pages/UserHome/UserHome.jsx';
+import Profile from './pages/Profile/Profile.jsx';
+import AdminRoute from './pages/Admin/AdminRoute.jsx';
+import AdminMovies from './pages/Admin/AdminMovies/AdminMovies.jsx';
 
 
 const router = createBrowserRouter(
@@ -19,8 +22,14 @@ const router = createBrowserRouter(
       <Route path= '/login' element = {<Login/>}></Route>
       <Route index = {true} path= '/' element = {<Home/>}></Route>
       <Route path= '/home' element = {<UserHome/>}></Route>
-    </Route>
+      <Route path= '/profile' element = {<Profile/>}></Route>
 
+      <Route path='/admin' element={<AdminRoute/>}>
+       <Route path = 'movies' element={<AdminMovies/>}></Route>
+      </Route>
+
+    </Route>
+  
   )
 )
 

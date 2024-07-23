@@ -1,5 +1,5 @@
 import { apiSlice } from "./apiSlice";
-import { MOVIE_URL } from "../constants";
+import { MOVIE_URL, UPLOAD_URL } from "../constants";
 
 export const movieApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder)=>({
@@ -11,10 +11,10 @@ export const movieApiSlice = apiSlice.injectEndpoints({
         }),
 
         createMovies : builder.mutation({
-            query:(data)=>({
+            query:(movieData)=>({
                 url: `${MOVIE_URL}`,
                 method: 'POST',
-                body: data
+                body: movieData
             })
         }),
 
@@ -22,9 +22,16 @@ export const movieApiSlice = apiSlice.injectEndpoints({
             query: (productId)=>({
                 url : `${MOVIE_URL}/${productId}`
             })
+        }),
+        uploadProductImage : builder.mutation({
+            query:(data)=>({
+                url:`${UPLOAD_URL}`,
+                method : `POST`,
+                body : data
+            })
         })
         
     })
 })
 
-export const {useGetAllMoviesQuery,useCreateMoviesMutation}= movieApiSlice;
+export const {useGetAllMoviesQuery,useCreateMoviesMutation,useGetMovieByIdQuery,useUploadProductImageMutation}= movieApiSlice;

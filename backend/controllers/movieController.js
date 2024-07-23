@@ -2,7 +2,8 @@ import asyncHandler from "../middleware/asyncHandler.js";
 import Movie from '../models/movieModel.js';
 
 const createMovie = asyncHandler(async(req,res)=>{
-const {moviename,genre,language,description,hero,heroine,director,price,category} = req.body;
+try{
+const {moviename,genre,language,description,hero,heroine,director,price,category} = req.fields;
 
 if(!moviename||!genre||!language||!description||!hero||!heroine||!director||!price||!category){
    throw new Error('please fill all fields')
@@ -11,22 +12,13 @@ const movieExists = await Movie.findOne({moviename});
 if(movieExists){
     res.status(400).send("Movie already exists")
 }
-const newMovie = new Movie({moviename,genre,language,description,hero,heroine,director,price,category});
-try{
+const newMovie = new Movie({...req.fields});
+
     await newMovie.save();
-    res.status(200).json({
-        _id: newMovie._id,
-        moviename : newMovie.moviename,
-        hero : newMovie.hero,
-        heroine : newMovie.heroine,
-        director: newMovie.director,
-        price : newMovie.price,
-        category:newMovie.category
-    })
+    res.status(200).json(newMovie)
 }
 catch(error){
-    res.status(400);
-    throw new Error(`$error`)
+    res.status(400).json(error.message);
 }
 });
 

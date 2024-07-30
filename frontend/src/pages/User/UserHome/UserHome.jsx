@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import React from 'react';
 import './UserHome.css'
-import { useGetAllMoviesQuery } from '../../redux/api/movieApiSlice.js';
+import { useGetAllMoviesQuery } from '../../../redux/api/movieApiSlice.js';
 
 function UserHome() {
 

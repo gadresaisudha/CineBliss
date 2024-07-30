@@ -1,8 +1,8 @@
 import { useState,useEffect } from "react";
 import {useDispatch,useSelector} from 'react-redux';
 import {toast} from 'react-toastify';
-import { setCredentials } from "../../redux/features/auth/authSlice";
-import { useProfileMutation } from "../../redux/api/userApiSlice";
+import { setCredentials } from "../../../redux/features/auth/authSlice";
+import { useProfileMutation } from "../../../redux/api/userApiSlice";
 
 const Profile = ()=>{
     const [username,setUserName] = useState("");

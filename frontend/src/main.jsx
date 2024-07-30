@@ -9,11 +9,10 @@ import App from './App.jsx'
 import store from './redux/store.js';
 import Login from './pages/Login/Login.jsx';
 import Home from './pages/Home/Home.jsx';
-import UserHome from './pages/UserHome/UserHome.jsx';
-import Profile from './pages/Profile/Profile.jsx';
-import AdminRoute from './pages/Admin/AdminRoute.jsx';
+import UserHome from './pages/User/UserHome/UserHome.jsx';
+import Profile from './pages/User/Profile/Profile.jsx';
 import AdminMovies from './pages/Admin/AdminMovies/AdminMovies.jsx';
-
+import Movies from './pages/User/Movies/Movies.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,7 +22,7 @@ const router = createBrowserRouter(
       <Route index = {true} path= '/' element = {<Home/>}></Route>
       <Route path= '/home' element = {<UserHome/>}></Route>
       <Route path= '/profile' element = {<Profile/>}></Route>
-      <Route path= '/movies' element = {<AdminMovies/>}></Route>
+      <Route path= '/movies' element = {<Movies/>}></Route>
 
 
     </Route>

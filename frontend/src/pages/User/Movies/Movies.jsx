@@ -28,6 +28,11 @@ function Movies() {
       };
 
     const {data:movies,isLoading,isError} = useGetAllMoviesQuery();
+   
+    const genres = [
+      'Action', 'Comedy', 'Drama', 'Fantasy', 'Horror',
+      'Mystery', 'Romance', 'Thriller', 'Animated'
+    ];
     
     if (isLoading) {
         return <div>Loading...</div>;
@@ -40,15 +45,22 @@ function Movies() {
 
     return (
         <div className='movies-list'>
-        <Carousel responsive={responsive}>
-         
-            {movies?.map((movie) => (         
+          {genres.map(genre => {
+          const filteredMovies = movies.filter(movie => movie.genre === genre);
+          return(
+          <div key={genre}>
+           {filteredMovies.length > 0 ? (
+          <Carousel responsive={responsive}>
+            {filteredMovies?.map((movie) => (         
             <div key={movie._id}>
-            <MovieCard image={movie.image} />
+            <MovieCard movie={movie} />
             </div>             
-               
-             ))}
-        </Carousel>
+                
+              ))}
+           </Carousel>):(<p>None to display</p>)}
+          </div>
+          );
+         })}
         </div>
     )
 }

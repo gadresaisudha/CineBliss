@@ -13,6 +13,7 @@ import UserHome from './pages/User/UserHome/UserHome.jsx';
 import Profile from './pages/User/Profile/Profile.jsx';
 import AdminMovies from './pages/Admin/AdminMovies/AdminMovies.jsx';
 import Movies from './pages/User/Movies/Movies.jsx';
+import MovieDetail from './pages/User/Movies/MovieDetail.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,7 +24,7 @@ const router = createBrowserRouter(
       <Route path= '/home' element = {<UserHome/>}></Route>
       <Route path= '/profile' element = {<Profile/>}></Route>
       <Route path= '/movies' element = {<Movies/>}></Route>
-
+      <Route path = 'movies/movie/:id' element = {<MovieDetail/>}></Route>
 
     </Route>
   

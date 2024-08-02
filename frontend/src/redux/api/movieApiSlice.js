@@ -19,8 +19,8 @@ export const movieApiSlice = apiSlice.injectEndpoints({
         }),
 
         getMovieById : builder.query({
-            query: (productId)=>({
-                url : `${MOVIE_URL}/${productId}`
+            query: (movieId)=>({
+                url : `${MOVIE_URL}/${movieId}`
             })
         }),
         uploadProductImage : builder.mutation({

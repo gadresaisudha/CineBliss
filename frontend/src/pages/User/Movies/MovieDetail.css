@@ -1,0 +1,28 @@
+.movie-detail-container {
+    margin : 20px;
+    
+  }
+  
+  .image-col {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+  }
+  
+  .movie-image {
+    width:18rem;
+  }
+  
+  .details-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  .movie-detail-row{
+    display: flex;
+    flex-direction: row;
+  }

@@ -8,7 +8,7 @@ function MovieCard({movie}) {
   
     return (
       
-          <Link to = {`movie/${movie._id}`}> 
+          <Link to = {`/movies/${movie._id}`}> 
           <Card className="text-center">
             <Card.Img variant="top" src={movie?.image} style={{ width: '10rem', margin: '0 auto' }} />
           </Card> 

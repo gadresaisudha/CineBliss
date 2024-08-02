@@ -24,7 +24,7 @@ const router = createBrowserRouter(
       <Route path= '/home' element = {<UserHome/>}></Route>
       <Route path= '/profile' element = {<Profile/>}></Route>
       <Route path= '/movies' element = {<Movies/>}></Route>
-      <Route path = 'movies/movie/:id' element = {<MovieDetail/>}></Route>
+      <Route path = '/movies/:id' element = {<MovieDetail/>}></Route>
 
     </Route>
   

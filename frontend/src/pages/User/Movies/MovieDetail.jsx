@@ -29,20 +29,21 @@ function MovieDetail({}) {
           </Col>
           <Col md={11} className="details-col">
             <Card.Body>
-             <Card.Title>{movie.moviename}</Card.Title>
-              <Card.Text>{movie.description}</Card.Text>
-              <Row className='movie-detail-row'>
-                <Col className='details-col' md={4}>
+             <Card.Title style={{fontSize:'48px'}}>{movie.moviename}</Card.Title>
+             <Card.Text style={{fontSize:'25px'}}>Overview</Card.Text>
+              <Card.Text style={{fontSize:'18px'}}>{movie.description}</Card.Text>
+              <Row className='movie-detail-inside-row'>
+                <Col className='details-col' md={3}>
                 <Card.Text>Genre: {movie.genre}</Card.Text>
                 <Card.Text>Category: {movie.category}</Card.Text>
                 <Card.Text>Language: {movie.language}</Card.Text>
                 </Col>
-                <Col className='details-col'  md={4}>
+                <Col className='details-col'  md={3}>
                 <Card.Text>Director: {movie.director}</Card.Text>
                 <Card.Text>Actor: {movie.hero}</Card.Text>
                 <Card.Text>Actress: {movie.heroine}</Card.Text>
                 </Col>
-                <Col className='details-col'  md={4}>
+                <Col className='details-col'  md={3}>
                 <Card.Text>Price: {movie.price}</Card.Text>
                 <Card.Text>Rating: {movie.overallrating}</Card.Text>
                 <Card.Text>Reviews: {movie.numReviews}</Card.Text>

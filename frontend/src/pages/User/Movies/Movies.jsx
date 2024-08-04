@@ -52,7 +52,7 @@ function Movies() {
            {filteredMovies.length > 0 ? (
           <Carousel responsive={responsive}>
             {filteredMovies?.map((movie) => (         
-            <div key={movie._id}>
+            <div key={movie._id} className='card-movie'>
             <MovieCard movie={movie} />
             </div>             
                 

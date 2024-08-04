@@ -42,7 +42,7 @@ const deleteMovie = asyncHandler(async(req,res)=>{
 const getMovie = asyncHandler(async(req,res)=>{
     console.log(req.params.id);
     const currentmovie =await Movie.findById(req.params.id);
-    console.log(currentmovie);
+    
     if(currentmovie){
         res.json(currentmovie);
     }

@@ -1,12 +1,12 @@
 .movie-detail-container {
-    margin : 20px;
+    margin : 40px;
     
   }
   
   .image-col {
     display: flex;
     align-items: left;
-    justify-content: left;
+    justify-content: center;
   }
   
   .movie-image {
@@ -25,4 +25,12 @@
   .movie-detail-row{
     display: flex;
     flex-direction: row;
+    justify-content: left;
+    gap:1.5rem;
+  }
+  .movie-detail-inside-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap:7.5rem;
   }

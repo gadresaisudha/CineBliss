@@ -1,3 +1,22 @@
-.card-movie{
-    padding : 2.5rem; 
-}
+.movie-card-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .movie-card {
+    width: 10rem;
+    transition: transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .movie-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .movie-card-img {
+    width: 10rem;
+    height: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+  

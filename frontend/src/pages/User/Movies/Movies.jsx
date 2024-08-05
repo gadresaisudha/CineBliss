@@ -15,7 +15,7 @@ function Movies() {
         },
         desktop: {
           breakpoint: { max: 1500, min: 1250 },
-          items: 8
+          items: 9
         },
         tablet: {
           breakpoint: { max: 1250, min: 464 },
@@ -48,14 +48,14 @@ function Movies() {
           {genres.map(genre => {
           const filteredMovies = movies.filter(movie => movie.genre === genre);
           return(
-          <div key={genre}>
+          <div key={genre} className='genre-section'>
+             <div className='movie-card-title'>{genre}</div>
            {filteredMovies.length > 0 ? (
-          <Carousel responsive={responsive}>
+          <Carousel responsive={responsive} itemClass="carousel-item-padding-40-px">
             {filteredMovies?.map((movie) => (         
-            <div key={movie._id} className='card-movie'>
+            <div key={movie._id}>
             <MovieCard movie={movie} />
-            </div>             
-                
+            </div>                            
               ))}
            </Carousel>):(<p>None to display</p>)}
           </div>

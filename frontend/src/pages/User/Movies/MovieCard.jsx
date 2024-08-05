@@ -8,10 +8,18 @@ function MovieCard({movie}) {
   
     return (
       
-          <Link to = {`/movies/${movie._id}`}> 
-          <Card>
-            <Card.Img variant="top" src={movie?.image} style={{ width: '15rem', margin: '0 auto' }} />
-          </Card> 
+          <Link to = {`/movies/${movie._id}`} className="movie-card-link"> 
+           <Card className="movie-card">
+            <Card.Img
+              variant="top"
+              src={movie?.image}
+              className="movie-card-img"
+            />
+            
+            {/*<Card.Body>
+              <Card.Title className="movie-card-title">{movie?.moviename}</Card.Title>
+            </Card.Body>*/}
+      </Card>
         </Link>
     )
 }

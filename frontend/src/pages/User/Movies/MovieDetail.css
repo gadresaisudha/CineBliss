@@ -34,3 +34,10 @@
     justify-content: left;
     gap:7.5rem;
   }
+  .movie-detail-btn{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1.5rem;
+    margin-right: 5rem;
+  }
+  

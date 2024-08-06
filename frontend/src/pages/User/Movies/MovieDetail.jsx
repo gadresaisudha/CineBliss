@@ -3,6 +3,10 @@ import {Card,Row,Col,Container} from 'react-bootstrap';
 import {Link,useParams} from 'react-router-dom';
 import { useGetMovieByIdQuery } from '../../../redux/api/movieApiSlice';
 import './MovieDetail.css';
+import Button from 'react-bootstrap/Button';
+import { useDispatch } from 'react-redux';
+import {addToCart} from '../../../redux/features/cart/cartSlice';
+import { toast } from 'react-toastify';
 
 function MovieDetail({}) {
 
@@ -19,6 +23,12 @@ function MovieDetail({}) {
         return <p>Error loading movie details. Please try again later.</p>;
       }
 
+    const dispatch = useDispatch();
+    const addToCartHandler = (movie)=>{
+      dispatch(addToCart({...movie}));
+      toast.success("Item added Successfully")
+    }
+
    return(
     <Container className="movie-detail-container">
     {movie ? (
@@ -29,7 +39,12 @@ function MovieDetail({}) {
           </Col>
           <Col md={11} className="details-col">
             <Card.Body>
-             <Card.Title style={{fontSize:'48px'}}>{movie.moviename}</Card.Title>
+             <Card.Title style={{fontSize:'48px'}}>
+              {movie.moviename}
+              <Button className='movie-detail-btn' onClick={()=>addToCartHandler(movie)}>
+                Add to Cart
+              </Button>
+              </Card.Title>
              <Card.Text style={{fontSize:'25px'}}>Overview</Card.Text>
               <Card.Text style={{fontSize:'18px'}}>{movie.description}</Card.Text>
               <Row className='movie-detail-inside-row'>

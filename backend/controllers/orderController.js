@@ -1,5 +1,5 @@
-import Order from '../models/orderModel';
-import Movie from '../models/movieModel';
+import Order from '../models/orderModel.js';
+import Movie from '../models/movieModel.js';
 
 function calcPrices(orderItems) {
     const itemsPrice = orderItems.reduce(
@@ -56,7 +56,7 @@ function calcPrices(orderItems) {
           };
         });
     
-        const { itemsPrice, taxPrice, shippingPrice, totalPrice } =
+        const { itemsPrice, taxPrice, totalPrice } =
           calcPrices(dbOrderItems);
     
         const order = new Order({
@@ -64,7 +64,6 @@ function calcPrices(orderItems) {
           user: req.user._id,
           itemsPrice,
           taxPrice,
-          shippingPrice,
           totalPrice,
         });
     
@@ -74,3 +73,15 @@ function calcPrices(orderItems) {
         res.status(500).json({ error: error.message });
       }
   }
+
+  const getUserOrders = async (req, res) => {
+    try {
+      const orders = await Order.find({ user: req.user._id });
+      res.json(orders);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
+  
+
+  export {createOrder,getUserOrders};

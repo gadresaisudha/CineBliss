@@ -35,7 +35,9 @@ function Header() {
       console.error(error);
     }
   };
-
+  const cartPageRedirect = async()=>{
+    navigate("/cart");
+  }
 
   const moviePageRedirect = async()=>{
     navigate("/movies");
@@ -52,6 +54,9 @@ function Header() {
           <div>   
             <button onClick={moviePageRedirect}>
              Movies
+            </button> 
+            <button onClick={cartPageRedirect}>
+             Cart
             </button>    
           <div className='dropdown'>
             <button onClick={toggleDropDown} className='dropdown-toggle'>

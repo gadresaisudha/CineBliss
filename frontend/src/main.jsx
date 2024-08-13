@@ -15,6 +15,7 @@ import AdminMovies from './pages/Admin/AdminMovies/AdminMovies.jsx';
 import Movies from './pages/User/Movies/Movies.jsx';
 import MovieDetail from './pages/User/Movies/MovieDetail.jsx';
 import Cart from './pages/User/Cart/cart.jsx';
+import Order from './pages/User/Order/order.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
       <Route path= '/movies' element = {<Movies/>}></Route>
       <Route path = '/movies/:id' element = {<MovieDetail/>}></Route>
       <Route path= '/cart' element = {<Cart/>}></Route>
+      <Route path= '/order' element = {<Order/>}></Route>
 
     </Route>
   

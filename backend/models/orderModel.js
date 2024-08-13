@@ -6,7 +6,7 @@ const orderSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" 
     },
     orderItems: [{
-        name: { type: String, required: true },
+        moviename: { type: String, required: true },
         image: { type: String, required: true },
         price: { type: Number, required: true },
         movie:{

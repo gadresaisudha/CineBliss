@@ -5,7 +5,7 @@ import {logout} from '../../redux/features/auth/authSlice';
 import { useLogoutMutation } from '../../redux/api/userApiSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import FormModal from '../Admin/AdminMovies/upsertMovie';
-
+import Nav from 'react-bootstrap/Nav';
 
 function Header() {
   const {userInfo} = useSelector((state)=>state.auth);
@@ -51,10 +51,22 @@ function Header() {
         </div>        
         {
           userInfo?(  
-          <div>   
-            <button onClick={moviePageRedirect}>
-             Movies
-            </button> 
+           
+
+          <div>
+            <div className='movies-nav'> 
+            <Nav
+              activeKey="/home"
+            >
+              <Nav.Item>
+                <Nav.Link href="/home">Home</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link href="/movies">Movies</Nav.Link>
+              </Nav.Item>
+            </Nav>
+            </div>
+
             <button onClick={cartPageRedirect}>
              Cart
             </button>    

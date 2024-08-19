@@ -5,7 +5,6 @@ import React from 'react';
 import { useDispatch ,useSelector} from 'react-redux';
 import {setCredentials} from '../../redux/features/auth/authSlice';
 import {toast} from 'react-toastify';
-import './Login.css'
 
 function Login() {
   const [email,setEmail] = useState('')
@@ -35,6 +34,7 @@ function Login() {
   
   
   return(
+    <div className='info'>
       <form onSubmit={handlesubmit}>
        
           <div>
@@ -67,6 +67,7 @@ function Login() {
             {isError && <p>Error: {error.message}</p>}
             {isSuccess && <p>Login successful!</p>}
       </form>
+      </div>
   )
 }
 

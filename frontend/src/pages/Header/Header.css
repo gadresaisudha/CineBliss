@@ -1,65 +1,18 @@
-.header{
-    min-height: 3vh;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color:rgba(3, 37, 65);
-    color: #72b5f7;
-}
-.title{
-    display: flex;
-    padding-left: 1.5rem;
-}
-.list{
-    display: flex;
-    justify-content: flex-end;
-    list-style: none;
-    gap: 1.5em;
-    flex: 1;
-    padding-right:1.5em
-}
-.dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-toggle {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .dropdown-toggle:hover {
-    background-color: #0056b3;
-  }
-  
-  .dropdown-menu {
-    display: block;
-    position: absolute;
-    background-color: white;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    top: 100%;
-  }
-  
-  .dropdown-item {
-    padding: 10px;
-    text-decoration: none;
-    display: block;
-    color: black;
-  }
-  
-  .dropdown-item:hover {
-    background-color: #f1f1f1;
-  }
-  .movies-nav{
-    display: flex;
-    flex-direction: row;
 
+  .custom-navbar {
+    background-color: rgba(3, 37, 65);
+    color:  #72b5f7;
   }
-  nav{
-    display: flex;
-    flex-direction: row;
-  }
+
+.custom-navbar .nav-link,
+.custom-navbar .navbar-brand {
+  color: #72b5f7;
+}
+
+.custom-navbar .nav-link:hover,
+.custom-navbar .navbar-brand:hover {
+  color: #fff;
+}
+.custom-navbar .container{
+  margin-left:1.5rem;
+}

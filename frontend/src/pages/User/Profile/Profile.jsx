@@ -44,7 +44,7 @@ const Profile = ()=>{
 
     return(
         <>
-        <div>
+        <div className ='info'>
          <form onSubmit = {submitHandler}>
          <div>
           <label>UserName</label>
@@ -81,7 +81,7 @@ const Profile = ()=>{
           <label>Confirm Password</label>
           <input
                   type="password"
-                  id="password"
+                  id="confirmpassword"
               
                   placeholder="ReEnter Password"
                   value={confirmPassword}
@@ -90,8 +90,7 @@ const Profile = ()=>{
           </div>
 
           <button             
-              type="submit"
-            >
+            style={{ marginTop: '20px' }} >
             Update
             </button>
          </form>

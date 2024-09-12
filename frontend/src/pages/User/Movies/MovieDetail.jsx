@@ -1,9 +1,9 @@
 import React from 'react';
 import {Card,Row,Col,Container} from 'react-bootstrap';
-import {Link,useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import { useGetMovieByIdQuery } from '../../../redux/api/movieApiSlice';
 import './MovieDetail.css';
-import Button from 'react-bootstrap/Button';
+import MovieCard from './MovieCard';
 import { useDispatch } from 'react-redux';
 import {addToCart} from '../../../redux/features/cart/cartSlice';
 import { toast } from 'react-toastify';
@@ -30,42 +30,44 @@ function MovieDetail({}) {
     }
 
    return(
-    <Container className="movie-detail-container">
+    <Container className='mt-5'>
     {movie ? (
-      <Card>
-        <Row className='movie-detail-row'>
-          <Col md={1} className="image-col">
-            <Card.Img className="movie-image" src={movie.image} alt={movie.title} />
+      <Card className='p-4'>
+        <Row>
+          <Col md={3} className='p-2'>
+            <MovieCard movie={movie} />
           </Col>
-          <Col md={11} className="details-col">
+          <Col md={8}>
             <Card.Body>
              <Card.Title style={{fontSize:'48px'}}>
               {movie.moviename}
-              <Button className='movie-detail-btn' onClick={()=>addToCartHandler(movie)}>
-                Add to Cart
-              </Button>
               </Card.Title>
+             
              <Card.Text style={{fontSize:'25px'}}>Overview</Card.Text>
               <Card.Text style={{fontSize:'18px'}}>{movie.description}</Card.Text>
-              <Row className='movie-detail-inside-row'>
-                <Col className='details-col' md={3}>
+              <Row>
+                <Col md={4}>
                 <Card.Text>Genre: {movie.genre}</Card.Text>
                 <Card.Text>Category: {movie.category}</Card.Text>
                 <Card.Text>Language: {movie.language}</Card.Text>
                 </Col>
-                <Col className='details-col'  md={3}>
+                <Col  md={4}>
                 <Card.Text>Director: {movie.director}</Card.Text>
                 <Card.Text>Actor: {movie.hero}</Card.Text>
                 <Card.Text>Actress: {movie.heroine}</Card.Text>
                 </Col>
-                <Col className='details-col'  md={3}>
+                <Col  md={4}>
                 <Card.Text>Price: {movie.price}</Card.Text>
                 <Card.Text>Rating: {movie.overallrating}</Card.Text>
                 <Card.Text>Reviews: {movie.numReviews}</Card.Text>
                 </Col>
               </Row>
+              <Row className='mt-2'>
+              <button type='submit' className='movie-detail-btn' onClick={()=>addToCartHandler(movie)}>
+                Add to Cart
+              </button>
+              </Row>
             </Card.Body>
-           
           </Col>
         </Row>
       </Card>

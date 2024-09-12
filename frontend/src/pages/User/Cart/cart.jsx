@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import './cart.css';
 import { removeFromCart } from "../../../redux/features/cart/cartSlice";
 import {  FaTrashAlt } from 'react-icons/fa';
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import MovieCard from '../Movies/MovieCard';
+
 
 const Cart = ()=>{
     const cart = useSelector((state)=>state.cart);
@@ -19,48 +22,82 @@ const Cart = ()=>{
         dispatch(removeFromCart(id));
     }
    return (
-    <>
-    <div>
-        {cartItems.length===0?
-        (<div> Cart is Empty  </div>): 
-        (<div className="cart-info">
-            <h2>Shopping Cart</h2>
-            {cartItems.map((item)=>
-             <div key={item._id} className="cart-detail">
-                 <img src={item.image} alt={item.moviename} className="cart-detail-image"/>
-                 <div className="cart-detail-info">
-                 <h3>{item.moviename}</h3>
-                 <div className="cart-detail-indetail">Genre: {item.genre}</div>
-                 <div className="cart-detail-indetail">Language: {item.language}</div>               
-                 <div className="cart-detail-indetail">Rating:{item.overallrating}</div>
-                 <div className="cart-detail-indetail">Reviews: {item.numReviews}</div>
-                 <div className="delete-cart-button">
-                <button type="submit" onClick={()=>deleteFromCart(item._id)}><FaTrashAlt/></button>
-                </div>
-                 </div>
-                 <div className="cart-detail-price">
-                   <h3> ${item.price}</h3> 
-                </div>
+    <Container className="mt-5">
+      {cartItems.length === 0 ? (
+        <div className="mt-4 text-center">
+          <h3>Your Cart is Empty</h3>
+        </div>
+      ) : (
+        <div>
+          <h2 className="mb-4 mt-4 custom-padding-left">Shopping Cart</h2>
+          <Card className="p-4 mx-auto my-4" style={{ maxWidth: '1000px' }}>
+          <Row>
+            {cartItems.map((item) => (
+              <Col md={12} key={item._id} className="mb-3">
                 
-            </div>
-            )}
-            <div>
-                <h4 className="cart-detail-total-price">Movies price : ${itemsPrice}</h4>
-                <h4 className="cart-detail-total-price">Tax price : ${taxPrice}</h4>
-                <h4 className="cart-detail-total-price">Total price : ${totalPrice}</h4>
-            </div>
-            <div  className="cart-detail-button">
-            <button 
-             className="checkout-button"            
+                  <Row>
+                    <Col md={3}>
+                    <MovieCard movie={item} />
+                    </Col>
+                    <Col md={6}>
+                      <h4>{item.moviename}</h4>
+                      <p>Genre: {item.genre}</p>
+                      <p>Language: {item.language}</p>
+                      <p>Rating: {item.overallrating}</p>
+                      <p>Reviews: {item.numReviews}</p>
+                    </Col>
+                    <Col md={3} className="text-right">
+                      <h4>${item.price}</h4>
+                     
+                      <button type="submit" onClick={()=>deleteFromCart(item._id)} className="delete-cart-button rounded"><FaTrashAlt/></button>
+                      
+                    </Col>
+                  </Row>
+                
+              </Col>
+            ))}
+          </Row>
+         
+            <Row>
+              <Col md={6} className="text-end">
+                <h5>Movies Price:</h5>
+              </Col>
+              <Col md={6}  className="text-start" >
+                <h5>${itemsPrice}</h5>
+              </Col>
+            </Row>
+            <Row >
+              <Col md={6} className="text-end">
+                <h5>Tax Price:</h5>
+              </Col>
+              <Col md={6} className="text-start">
+                <h5>${taxPrice}</h5>
+              </Col>
+            </Row>
+            <Row>
+              <Col md={6}  className="text-end">
+                <h4>Total Price:</h4>
+              </Col>
+              <Col md={6}  className="text-start">
+                <h4>${totalPrice}</h4>
+              </Col>
+            </Row>
+            <Row className="mt-4">
+              <Col className="text-center">
+              <button 
+             className="rounded checkout-button"            
               type="submit"
               onClick={onCheckOut}>
-            Proceed To Checkout
-            </button>
-            </div>
-        </div>)}
-    </div>
-    </>
-   )
+                  Proceed To Checkout
+               </button>
+              </Col>
+            </Row>
+        </Card>
+        </div>
+      )}
+    </Container>
+  );
+   
 
 }
 export default Cart;

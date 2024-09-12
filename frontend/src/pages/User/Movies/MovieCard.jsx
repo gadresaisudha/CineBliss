@@ -8,12 +8,11 @@ function MovieCard({movie}) {
   
     return (
       
-          <Link to = {`/movies/${movie._id}`} className="movie-card-link"> 
-           <Card className="movie-card">
+          <Link to = {`/movies/${movie._id}`}> 
+           <Card className='movie-card rounded'>
             <Card.Img
               variant="top"
               src={movie?.image}
-              className="movie-card-img"
             />
             
             {/*<Card.Body>

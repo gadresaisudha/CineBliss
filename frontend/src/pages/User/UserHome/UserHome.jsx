@@ -1,31 +1,28 @@
-import { useState } from 'react'
-import React from 'react';
-import './UserHome.css'
-import { useGetAllMoviesQuery } from '../../../redux/api/movieApiSlice.js';
 
+import { useGetAllMoviesQuery } from '../../../redux/api/movieApiSlice.js';
+import { Carousel } from 'react-bootstrap';
+import './UserHome.css';
 function UserHome() {
 
  const {data:movies,isLoading,isError} = useGetAllMoviesQuery();
 
   return (
     <>
-      <div>
-       {movies?.map((movie)=>( 
-        <div key={movie._id}>
-        <div>
-          {movie?.moviename}
-        </div>
-        
-        <div>
-          {movie?.description}
-        </div>
+      
+      <Carousel className='mt-4'>
+      {movies?.map((movie) => (    
+          <Carousel.Item interval={1000}  key={movie._id}>
+            <div className="image-wrapper">
+            <img
+              className="d-block movie-image"
+              src={movie.image}
+              alt={`${movie.moviename} Poster`}
+            />
+          </div>
+        </Carousel.Item>
+      ))}
+    </Carousel>
 
-        <div>
-          {movie?.category}
-        </div>
-        </div>
-       ))}
-      </div>
     </>
   )
 }

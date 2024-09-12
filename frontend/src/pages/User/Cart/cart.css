@@ -1,49 +1,14 @@
 .cart-detail-image{
     width : 200px;
 }
-.cart-detail{
-    display:flex;
-    flex-direction: row;
-    gap:1.5rem;
-    padding-top: 0.8rem;
-  
-}
-.cart-detail-info{
-    display:flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 45rem;
-}
 
-.cart-detail-indetail{
-    padding-top: 0.8rem;
-}
-
-.cart-detail-button{
-    display: flex;
-    justify-content: center;
-}
-
-
-.cart-detail-price{
-    display: flex;
-    justify-content: flex-end;
-    width: 10rem;
-}
-.cart-detail-total-price{
-    display: flex;
-    justify-content: flex-end;
-}
-.cart-info{
-    
-    margin: 1.5rem 8.5rem;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
 .checkout-button{
-    width: 600px;
+    width: 400px;
 }
 .delete-cart-button{
     padding-top: 1rem;
+    width: 50px;
 }
+.custom-padding-left {
+    padding-left: 150px; /* Or any other value larger than Bootstrap’s predefined sizes */
+  }

@@ -4,28 +4,28 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import MovieCard from './MovieCard';
 import './Movies.css';
+import { Container, Row, Col} from 'react-bootstrap';
 
 function Movies() {
 
-    const responsive = {
-        superLargeDesktop: {
-          // the naming can be any, depends on you.
-          breakpoint: { max: 4000, min: 1500 },
-          items: 4
-        },
-        desktop: {
-          breakpoint: { max: 1500, min: 1250 },
-          items: 9
-        },
-        tablet: {
-          breakpoint: { max: 1250, min: 464 },
-          items: 2
-        },
-        mobile: {
-          breakpoint: { max: 464, min: 0 },
-          items: 1
-        }
-      };
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 1500 },
+      items: 8,
+    },
+    desktop: {
+      breakpoint: { max: 1500, min: 1250 },
+      items: 6,
+    },
+    tablet: {
+      breakpoint: { max: 1250, min: 464 },
+      items: 4,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 3,
+    },
+  };
 
     const {data:movies,isLoading,isError} = useGetAllMoviesQuery();
    
@@ -44,24 +44,31 @@ function Movies() {
     
 
     return (
-        <div className='movies-list'>
-          {genres.map(genre => {
-          const filteredMovies = movies.filter(movie => movie.genre === genre);
-          return(
-          <div key={genre} className='genre-section'>
-             <div className='movie-card-title'>{genre}</div>
-           {filteredMovies.length > 0 ? (
-          <Carousel responsive={responsive} itemClass="carousel-item-padding-40-px">
-            {filteredMovies?.map((movie) => (         
-            <div key={movie._id}>
-            <MovieCard movie={movie} />
-            </div>                            
-              ))}
-           </Carousel>):(<p>None to display</p>)}
-          </div>
-          );
-         })}
-        </div>
+      <Container className="mt-3">
+      {genres.map(genre => {
+        const filteredMovies = movies.filter(movie => movie.genre === genre);
+        return (
+          <Row key={genre} className="mb-3">
+            <Col xs={12}>
+              <h5>{genre}</h5>
+            </Col>
+            <Col xs={12}>
+              {filteredMovies.length > 0 ? (
+                <Carousel responsive={responsive} itemClass="carousel-item-padding">
+                  {filteredMovies.map(movie => (
+                    <div key={movie._id}>
+                      <MovieCard movie={movie} />
+                    </div>
+                  ))}
+                </Carousel>
+              ) : (
+                <p>None to display</p>
+              )}
+            </Col>
+          </Row>
+        );
+      })}
+    </Container>
     )
 }
 

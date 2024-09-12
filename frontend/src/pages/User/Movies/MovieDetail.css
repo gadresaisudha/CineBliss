@@ -1,43 +1,17 @@
-.movie-detail-container {
-    margin : 40px;
-    
-  }
+
   
-  .image-col {
-    display: flex;
-    align-items: left;
-    justify-content: center;
-  }
   
   .movie-image {
-    width:18rem;
+    width: 100%; /* Ensures the image fills the width of its container */
+    height: auto; /* Maintains aspect ratio */
   }
   
-  .details-col {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
   
-  .card-body {
-    padding: 20px;
-  }
-  .movie-detail-row{
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    gap:1.5rem;
-  }
-  .movie-detail-inside-row{
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    gap:7.5rem;
-  }
+
   .movie-detail-btn{
-    display: flex;
-    justify-content: flex-end;
-    font-size: 1.5rem;
-    margin-right: 5rem;
+    width: 150px;
+    display :flex;
+    align-items: flex-start;
+    justify-content: center;
   }
   

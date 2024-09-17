@@ -1,14 +1,8 @@
+.movie-slide {
+  padding: 15px 5px; /* Optional: Add space between slides */
+}
 
-  .image-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50vh; /* Adjust as needed */
-  }
-  
-  .movie-image {
-    width: 100%;  /* Set a fixed width */
-    height: 100%; /* Set a fixed height */
-    object-fit: cover; /* Ensures the image covers the entire space, but may crop */
-    margin: 0 auto;
-  }
+.movie-image {
+  width: 50%; /* Make images responsive */
+  height: auto; /* Maintain aspect ratio */
+}

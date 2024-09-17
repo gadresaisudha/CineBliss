@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+const {ObjectId} = mongoose.Schema;
 
 const userSchema =   mongoose.Schema({
   username:{
@@ -17,7 +18,7 @@ const userSchema =   mongoose.Schema({
    type:Boolean,
    required:true,
    default: false,
- }
+ },
 },
 {timestamps: true});
 

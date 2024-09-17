@@ -1,4 +1,3 @@
-import React from 'react';
 import {Card,Row,Col,Container} from 'react-bootstrap';
 import {useParams} from 'react-router-dom';
 import { useGetMovieByIdQuery } from '../../../redux/api/movieApiSlice';
@@ -7,12 +6,17 @@ import MovieCard from './MovieCard';
 import { useDispatch } from 'react-redux';
 import {addToCart} from '../../../redux/features/cart/cartSlice';
 import { toast } from 'react-toastify';
-
+import { useGetMyOrdersQuery } from '../../../redux/api/orderApiSlice';
 function MovieDetail({}) {
 
     const { id: movieId,isLoading,error } = useParams();
     const {data:movie} = useGetMovieByIdQuery(movieId);
-    console.log(movie);
+    const {data:myorders} = useGetMyOrdersQuery();
+    const usermovies = myorders && myorders.length > 0 
+      ? myorders
+          .flatMap(order => order.orderItems)
+          .map(item => item.movie)
+      : [];
      
   
     if (isLoading) {
@@ -63,8 +67,9 @@ function MovieDetail({}) {
                 </Col>
               </Row>
               <Row className='mt-2'>
-              <button type='submit' className='movie-detail-btn' onClick={()=>addToCartHandler(movie)}>
-                Add to Cart
+              <button type='submit' className='movie-detail-btn' onClick={()=>addToCartHandler(movie)}
+               disabled={usermovies.some(userMovie => userMovie._id === movie._id)}  >
+              {usermovies.some(userMovie => userMovie._id === movie._id) ? 'Already Purchased' : 'Buy'}
               </button>
               </Row>
             </Card.Body>

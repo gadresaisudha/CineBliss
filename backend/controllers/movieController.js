@@ -75,6 +75,15 @@ const updateMovie = asyncHandler(async(req,res)=>{
     }
 });
 
+const getTopMovies = asyncHandler(async(req,res)=>{
+    try {
+        const movies = await Movie.find({}).sort({ overallrating: -1 }).limit(4);
+        res.json(movies);
+      } catch (error) {
+        console.error(error);
+        res.status(400).json(error.message);
+      }
+  
+})
 
-
-export {createMovie,getAllMovies,deleteMovie,getMovie,updateMovie};
+export {createMovie,getAllMovies,deleteMovie,getMovie,updateMovie,getTopMovies};

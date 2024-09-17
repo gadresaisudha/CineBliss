@@ -88,7 +88,7 @@ const Profile = ()=>{
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
           </div>
-
+         
           <button             
             style={{ marginTop: '20px' }} >
             Update

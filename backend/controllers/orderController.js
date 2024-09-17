@@ -76,7 +76,7 @@ function calcPrices(orderItems) {
 
   const getUserOrders = async (req, res) => {
     try {
-      const orders = await Order.find({ user: req.user._id });
+      const orders = await Order.find({ user: req.user._id }).populate('orderItems.movie');;
       res.json(orders);
     } catch (error) {
       res.status(500).json({ error: error.message });

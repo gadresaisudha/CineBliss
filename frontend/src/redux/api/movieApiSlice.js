@@ -1,5 +1,6 @@
 import { apiSlice } from "./apiSlice";
 import { MOVIE_URL, UPLOAD_URL } from "../constants";
+import { getTopMovies } from "../../../../backend/controllers/movieController";
 
 export const movieApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder)=>({
@@ -29,9 +30,14 @@ export const movieApiSlice = apiSlice.injectEndpoints({
                 method : `POST`,
                 body : data
             })
+        }),
+        getTopMovies : builder.query({
+            query : ()=>({
+                url: `${MOVIE_URL}/top`
+            })
         })
         
     })
 })
 
-export const {useGetAllMoviesQuery,useCreateMoviesMutation,useGetMovieByIdQuery,useUploadProductImageMutation}= movieApiSlice;
+export const {useGetAllMoviesQuery,useCreateMoviesMutation,useGetMovieByIdQuery,useUploadProductImageMutation, useGetTopMoviesQuery}= movieApiSlice;

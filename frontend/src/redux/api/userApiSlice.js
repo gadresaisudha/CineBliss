@@ -13,7 +13,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
 
         register : builder.mutation({
             query:(data)=>({
-                url: `${USERS_URL}/register`,
+                url: `${USERS_URL}/`,
                 method: 'POST',
                 body: data,
             })
@@ -29,7 +29,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
 
         getAllUsers : builder.query({
             query:()=>({
-                url: `${USERS_URL}/getallusers`,
+                url: `${USERS_URL}/`,
             })
         }),
 

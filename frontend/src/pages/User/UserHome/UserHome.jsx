@@ -17,7 +17,7 @@ import MovieCarousel from '../Movies/MovieCarousel.jsx';
       .flatMap(order => order.orderItems)
       .map(item => item.movie)
   : [];
- console.log(usermovies);
+
    const settings = {
      dots: true,
      infinite: true, 

@@ -79,6 +79,7 @@ function MovieDetail({}) {
     ) : (
       <p>Movie not found.</p>
     )}
+    
   </Container>
    )
 }

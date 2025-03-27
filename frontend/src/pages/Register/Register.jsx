@@ -17,7 +17,9 @@ function Register() {
   
   const handlesubmit = async (e) => {
       e.preventDefault();
-  
+      if(password!=confirmpassword){
+        toast.error('password do not match');
+      }
      
         try {
           const res = await register({ username, email, password }).unwrap();
